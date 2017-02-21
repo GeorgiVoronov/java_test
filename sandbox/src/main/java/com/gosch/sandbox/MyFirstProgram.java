@@ -6,12 +6,14 @@ public class MyFirstProgram {
 		hello("world");
 		hello("user");
 
-		double side = 5;
-      System.out.println("Area of square with side " + side + " = " + area(side));
+		Square square = new Square();
+		square.side = 5;
+      System.out.println("Area of square with side " + square.side + " = " + area(square));
 
-      double a = 5;
-      double b = 7;
-      System.out.println("Area of rectangle with sides " + a + " and " + b + " = " + area(a,b));
+      Rectangle rectangle = new Rectangle();
+      rectangle.a = 5;
+      rectangle.b = 7;
+      System.out.println("Area of rectangle with sides " + rectangle.a + " and " + rectangle.b + " = " + area(rectangle));
 
       System.out.println(distance(new Point(2,3), new Point(2,3)));
    }
@@ -24,12 +26,12 @@ public class MyFirstProgram {
       System.out.println("Hello, " + somebody + "!");
    }
 
-   public static double area(double side) {
-	   return side * side;
+   public static double area(Square s) {
+	   return s.side * s.side;
    }
 
-   public static double area(double sideA, double sideB) {
-	   return sideA * sideB;
+   public static double area(Rectangle r) {
+	   return r.a * r.b;
    }
 	
 }
