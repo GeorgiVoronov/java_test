@@ -6,13 +6,10 @@ public class MyFirstProgram {
 		hello("world");
 		hello("user");
 
-		Square square = new Square();
-		square.side = 5;
+		Square square = new Square(5);
       System.out.println("Area of square with side " + square.side + " = " + area(square));
 
-      Rectangle rectangle = new Rectangle();
-      rectangle.a = 5;
-      rectangle.b = 7;
+      Rectangle rectangle = new Rectangle(5, 7);
       System.out.println("Area of rectangle with sides " + rectangle.a + " and " + rectangle.b + " = " + area(rectangle));
 
       System.out.println(distance(new Point(2,3), new Point(2,3)));
