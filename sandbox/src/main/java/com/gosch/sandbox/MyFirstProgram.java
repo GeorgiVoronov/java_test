@@ -12,8 +12,8 @@ public class MyFirstProgram {
       Rectangle rectangle = new Rectangle(5, 7);
       System.out.println("Area of rectangle with sides " + rectangle.a + " and " + rectangle.b + " = " + rectangle.area());
 
-      Point a = new Point(1,2);
-      Point b = new Point(2,3);
+      Point a = new Point(3,2);
+      Point b = new Point(9,7);
 
       System.out.println("Distance between two points: " + a.distance(b));
    }

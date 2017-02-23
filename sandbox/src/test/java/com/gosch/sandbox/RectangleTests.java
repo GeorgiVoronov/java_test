@@ -16,5 +16,5 @@ public class RectangleTests {
       Rectangle rectangle = new Rectangle(3,3);
       Assert.assertEquals(rectangle.area(), 9.0);
    }
-   
+
 }
