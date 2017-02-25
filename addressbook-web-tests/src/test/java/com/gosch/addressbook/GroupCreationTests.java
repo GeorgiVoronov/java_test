@@ -33,6 +33,8 @@ public class GroupCreationTests {
 
    @Test
    public void testGroupCreation() {
+      // Первый механизм рефакторинга - выделение вспомогательных методов
+      // Refactoring Mechanism - creating helping methods
       gotoGroupPage();
       initGroupCreation();
       fillGroupForm();
