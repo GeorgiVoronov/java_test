@@ -1,5 +1,6 @@
-package com.gosch.addressbook;
+package com.gosch.addressbook.tests;
 
+import com.gosch.addressbook.models.GroupData;
 import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {

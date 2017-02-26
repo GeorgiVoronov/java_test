@@ -1,4 +1,4 @@
-package com.gosch.addressbook;
+package com.gosch.addressbook.models;
 
 public class GroupData {
    private final String name;

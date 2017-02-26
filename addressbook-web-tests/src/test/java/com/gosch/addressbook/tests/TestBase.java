@@ -1,5 +1,6 @@
-package com.gosch.addressbook;
+package com.gosch.addressbook.tests;
 
+import com.gosch.addressbook.appmanager.ApplicationManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 

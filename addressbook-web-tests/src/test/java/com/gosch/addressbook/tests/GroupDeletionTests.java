@@ -1,4 +1,4 @@
-package com.gosch.addressbook;
+package com.gosch.addressbook.tests;
 
 import org.testng.annotations.Test;
 

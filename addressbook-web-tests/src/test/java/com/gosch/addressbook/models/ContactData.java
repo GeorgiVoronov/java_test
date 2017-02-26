@@ -1,4 +1,4 @@
-package com.gosch.addressbook;
+package com.gosch.addressbook.models;
 
 public class ContactData {
    private final String firstName;
