@@ -4,6 +4,7 @@ import com.gosch.addressbook.appmanager.ApplicationManager;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+// Fixture class
 public class TestBase {
 
    // Delegation -> Объекту вспомогательного класса делегируются некоторые действия
