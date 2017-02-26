@@ -8,12 +8,12 @@ public class GroupCreationTests extends TestBase {
    @Test
    public void testGroupCreation() {
       // Refactoring Mechanism - creating helping methods
-      app.gotoGroupPage();
-      app.initGroupCreation();
+      app.getNavigationHelper().gotoGroupPage();
+      app.getGroupHelper().initGroupCreation();
       // Вместо того чтобы передавать несколько параметров - передаётся 1 объект
-      app.fillGroupForm(new GroupData("test1", "test2", "test3"));
-      app.submitGroupCreation();
-      app.returnToGroupPage();
+      app.getGroupHelper().fillGroupForm(new GroupData("test1", "test2", "test3"));
+      app.getGroupHelper().submitGroupCreation();
+      app.getGroupHelper().returnToGroupPage();
    }
 
 }
