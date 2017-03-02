@@ -16,7 +16,6 @@ public class ContactHelper extends BaseHelper {
       type(By.name("nickname"), contactData.getNickName());
       type(By.name("mobile"), contactData.getMobile());
       type(By.name("email"), contactData.getEmail());
-      click(By.xpath("//div[@id='content']/form/input[21]"));
    }
 
    public void returnToHomePage() {
