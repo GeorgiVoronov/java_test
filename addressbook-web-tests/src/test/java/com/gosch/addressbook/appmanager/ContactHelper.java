@@ -3,6 +3,8 @@ package com.gosch.addressbook.appmanager;
 import com.gosch.addressbook.models.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ContactHelper extends BaseHelper {
 
@@ -44,6 +46,9 @@ public class ContactHelper extends BaseHelper {
 
    public void submitContactsDeletion() {
       wd.switchTo().alert().accept();
+      new WebDriverWait(wd, 10)
+              .withMessage("Davaj ponovoj")
+              .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.msgbox")));
       /*
       if(isAlertPresent()) {
          wd.switchTo().alert().accept();
