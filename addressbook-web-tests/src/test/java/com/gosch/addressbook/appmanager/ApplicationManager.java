@@ -1,7 +1,6 @@
 package com.gosch.addressbook.appmanager;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.concurrent.TimeUnit;
 
 // AppManager will delegate some functions to one of his Helpers
