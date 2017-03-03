@@ -15,7 +15,9 @@ public class ApplicationManager {
 
    public void init() {
       //System.setProperty("webdriver.gecko.driver", "C:\\Users\\Georgi\\Documents\\Firefox Driver\\geckodriver.exe");
-      System.setProperty("webdriver.gecko.driver", "C:\\Users\\Georgi\\Documents\\Chrome Driver\\chromedriver.exe");
+      //System.setProperty("webdriver.chrome.driver", "C:\\Users\\Georgi\\Documents\\Chrome Driver\\chromedriver.exe");
+      // Firefox Driver -> Work
+      System.setProperty("webdriver.gecko.driver", "C:\\Users\\gvoronov\\Documents\\Firefox Driver\\geckodriver.exe");
       wd = new FirefoxDriver();
       wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
       wd.get("http://localhost/addressbook/");

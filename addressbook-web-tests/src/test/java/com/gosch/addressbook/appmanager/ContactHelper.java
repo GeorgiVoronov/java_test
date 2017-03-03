@@ -6,6 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class ContactHelper extends BaseHelper {
 
    public ContactHelper(FirefoxDriver wd) {
@@ -46,7 +48,7 @@ public class ContactHelper extends BaseHelper {
 
    public void submitContactsDeletion() {
       wd.switchTo().alert().accept();
-      new WebDriverWait(wd, 10)
+      wait.withTimeout(10, TimeUnit.SECONDS)
               .withMessage("Davaj ponovoj")
               .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.msgbox")));
       /*
