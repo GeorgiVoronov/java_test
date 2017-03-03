@@ -2,14 +2,14 @@ package com.gosch.addressbook.appmanager;
 
 import com.gosch.addressbook.models.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends BaseHelper {
 
-   public ContactHelper(FirefoxDriver wd) {
+   public ContactHelper(WebDriver wd) {
       super(wd);
    }
 
