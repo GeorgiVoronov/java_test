@@ -11,7 +11,7 @@ public class GroupCreationTests extends TestBase {
       app.getNavigationHelper().gotoGroupPage();
       app.getGroupHelper().initGroupCreation();
       // Вместо того чтобы передавать несколько параметров - передаётся 1 объект
-      app.getGroupHelper().fillGroupForm(new GroupData("test1", "test2", "test3"));
+      app.getGroupHelper().fillGroupForm(new GroupData("test1", null, null));
       app.getGroupHelper().submitGroupCreation();
       app.getGroupHelper().returnToGroupPage();
    }
