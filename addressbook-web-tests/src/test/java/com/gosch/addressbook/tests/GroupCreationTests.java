@@ -5,15 +5,11 @@ import org.testng.annotations.Test;
 
 public class GroupCreationTests extends TestBase {
 
-   @Test
-   public void testGroupCreation() {
-      // Refactoring Mechanism - creating helping methods
-      app.getNavigationHelper().gotoGroupPage();
-      app.getGroupHelper().initGroupCreation();
-      // Вместо того чтобы передавать несколько параметров - передаётся 1 объект
-      app.getGroupHelper().fillGroupForm(new GroupData("test1", null, null));
-      app.getGroupHelper().submitGroupCreation();
-      app.getGroupHelper().returnToGroupPage();
-   }
+    @Test
+    public void testGroupCreation() {
+        // Refactoring Mechanism - creating helping methods
+        app.getNavigationHelper().gotoGroupPage();
+        app.getGroupHelper().createGroup(new GroupData("test1", null, null));
+    }
 
 }
