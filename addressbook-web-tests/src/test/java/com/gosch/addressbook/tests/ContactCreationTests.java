@@ -5,15 +5,10 @@ import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
 
-   @Test
-   public void ContactCreationTests() {
-      app.getNavigationHelper().gotoContactCreationPage();
-      app.getContactHelper().fillContactForm(
-              new ContactData("Georgi", "Voronov", null, "53089127", "georgi.voronov@outlook.com", "test1"),
-              true
-      );
-      app.getContactHelper().submitContactCreation();
-      app.getContactHelper().returnToHomePage();
-   }
+    @Test
+    public void ContactCreationTests() {
+        app.getNavigationHelper().gotoContactCreationPage();
+        app.getContactHelper().createContact(new ContactData("Georgi", "Voronov", null, "53089127", "georgi.voronov@outlook.com", "test1"), true);
+    }
 
 }
