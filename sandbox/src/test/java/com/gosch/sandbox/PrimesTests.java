@@ -15,9 +15,15 @@ public class PrimesTests {
         Assert.assertTrue(Primes.isPrimeFast(Integer.MAX_VALUE));
     }
 
-    @Test
+
+    @Test (enabled = false)
     public void testPrimeMegaFast() {
         Assert.assertTrue(Primes.isPrimeMegaFast(Integer.MAX_VALUE));
+    }
+
+    @Test
+    public void testPrimeMegaFastSmall() {
+        Assert.assertTrue(Primes.isPrimeMegaFast(11));
     }
 
     @Test
