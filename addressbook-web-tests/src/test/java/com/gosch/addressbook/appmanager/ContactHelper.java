@@ -47,8 +47,9 @@ public class ContactHelper extends BaseHelper {
         click(By.name("update"));
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+        //click(By.name("selected[]"));
     }
 
     public void deleteSelectedContacts() {
