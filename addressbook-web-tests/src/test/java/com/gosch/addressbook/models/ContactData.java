@@ -1,43 +1,69 @@
 package com.gosch.addressbook.models;
 
 public class ContactData {
-   private final String firstName;
-   private final String lastName;
-   private final String nickName;
-   private final String mobile;
-   private final String email;
-   private String group;
+    private final String firstName;
+    private final String lastName;
+    private final String nickName;
+    private final String mobile;
+    private final String email;
+    private String group;
 
-   public ContactData(String firstName, String lastName, String nickName, String mobile, String email, String group) {
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.nickName = nickName;
-      this.mobile = mobile;
-      this.email = email;
-      this.group = group;
-   }
+    public ContactData(String firstName, String lastName, String nickName, String mobile, String email, String group) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickName = nickName;
+        this.mobile = mobile;
+        this.email = email;
+        this.group = group;
+    }
 
-   public String getFirstName() {
-      return firstName;
-   }
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 
-   public String getLastName() {
-      return lastName;
-   }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-   public String getNickName() {
-      return nickName;
-   }
+        ContactData that = (ContactData) o;
 
-   public String getMobile() {
-      return mobile;
-   }
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+    }
 
-   public String getEmail() {
-      return email;
-   }
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        return result;
+    }
 
-   public String getGroup() {
-      return group;
-   }
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGroup() {
+        return group;
+    }
 }

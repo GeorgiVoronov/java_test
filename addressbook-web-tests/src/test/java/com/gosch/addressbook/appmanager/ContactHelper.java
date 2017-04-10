@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -90,8 +91,9 @@ public class ContactHelper extends BaseHelper {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
-            String name = element.getText();
-            ContactData contact = new ContactData(name,null,null,null,null,null);
+            String text = element.getText();
+            List<String> myList = new ArrayList<>(Arrays.asList(text.split(" ")));
+            ContactData contact = new ContactData(myList.get(0), myList.get(1), null, null, null,null);
             contacts.add(contact);
         }
         return contacts;
