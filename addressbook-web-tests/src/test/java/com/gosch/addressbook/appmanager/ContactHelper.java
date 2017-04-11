@@ -97,7 +97,8 @@ public class ContactHelper extends BaseHelper {
             String name = element.findElements(By.tagName("td")).get(1).getText();
             System.out.println(name);
             */
-            ContactData contact = new ContactData(list.get(1).getText(), list.get(2).getText(), null, null, null,null);
+            String id = list.get(0).findElement(By.tagName("input")).getAttribute("value");
+            ContactData contact = new ContactData(id, list.get(2).getText(), list.get(1).getText(), null, null, null,null);
             contacts.add(contact);
         }
         return contacts;
