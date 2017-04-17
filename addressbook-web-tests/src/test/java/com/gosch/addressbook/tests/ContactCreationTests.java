@@ -4,6 +4,7 @@ import com.gosch.addressbook.models.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -22,7 +23,11 @@ public class ContactCreationTests extends TestBase {
 
         contact.setId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId());
         before.add(contact);
-        Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
+        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
+        //Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
     }
 
 }
