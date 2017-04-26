@@ -5,20 +5,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
     @Test(enabled = false)
     public void ContactCreationTests() {
-        //int before = app.getContactHelper().getContactCount();
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getNavigationHelper().gotoContactCreationPage();
+        List<ContactData> before = app.contact().list();
+        app.goTo().contactCreationPage();
         ContactData contact = new ContactData("Georgi", "Voronov", null, "53089127", "georgi.voronov@outlook.com", "test1");
-        app.getContactHelper().createContact(contact, true);
-        //int after = app.getContactHelper().getContactCount();
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().create(contact, true);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         contact.setId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId());
@@ -27,7 +24,6 @@ public class ContactCreationTests extends TestBase {
         before.sort(byId);
         after.sort(byId);
         Assert.assertEquals(before, after);
-        //Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
     }
 
 }

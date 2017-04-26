@@ -45,7 +45,6 @@ public class ContactHelper extends BaseHelper {
 
     public void initContactModification(int index) {
         click(By.xpath("//table[@id='maintable']/tbody/tr[" + (index + 1) + "]/td[8]/a/img"));
-        //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
     public void submitContactModification() {
@@ -73,10 +72,26 @@ public class ContactHelper extends BaseHelper {
         */
     }
 
-    public void createContact(ContactData contactData, boolean creation) {
+    public void create(ContactData contactData, boolean creation) {
         fillContactForm(contactData, creation);
         submitContactCreation();
         returnToHomePage();
+    }
+
+    public void modify(int index, ContactData contact) {
+        initContactModification(index);
+        fillContactForm(contact,false);
+        submitContactModification();
+        returnToHomePage();
+    }
+
+    public void delete(int index) {
+        selectContact(index);
+        deleteSelectedContacts();
+        submitContactsDeletion();
+        wait.withTimeout(10, TimeUnit.SECONDS)
+                .withMessage("Error returning to Home Page")
+                .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#search-az > form > input[type=\"text\"]")));
     }
 
     public boolean isThereAContact() {
@@ -87,7 +102,7 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
