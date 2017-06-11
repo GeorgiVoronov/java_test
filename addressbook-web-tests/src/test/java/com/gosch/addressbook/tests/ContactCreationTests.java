@@ -9,17 +9,12 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void ContactCreationTests() {
         List<ContactData> before = app.contact().list();
         app.goTo().contactCreationPage();
         // TODO: add method that checks whether there is a group for contact or not
-        ContactData contact = new ContactData()
-                .withFirstName("Georgi")
-                .withLastName("Voronov")
-                .withMobile("53089127")
-                .withEmail("georgi.voronov@outlook.com")
-                .withGroup("test1");
+        ContactData contact = new ContactData("Georgi", "Voronov", null, "53089127", "georgi.voronov@outlook.com", "test1");
         app.contact().create(contact, true);
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);

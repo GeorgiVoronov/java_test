@@ -113,10 +113,8 @@ public class ContactHelper extends BaseHelper {
             System.out.println(name);
             */
             int id = Integer.parseInt(list.get(0).findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData()
-                    .withId(id)
-                    .withFirstName(list.get(2).getText())
-                    .withLastName(list.get(1).getText()));
+            ContactData contact = new ContactData(id, list.get(2).getText(), list.get(1).getText(), null, null, null,null);
+            contacts.add(contact);
         }
         return contacts;
     }
