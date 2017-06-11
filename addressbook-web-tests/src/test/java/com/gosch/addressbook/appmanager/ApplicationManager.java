@@ -32,6 +32,7 @@ public class ApplicationManager {
       } else if (browser.equals(BrowserType.IE)) {
          wd = new InternetExplorerDriver();
       }
+      //wd.manage().window().maximize();
       wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //неявное ожидание
       wd.get("http://localhost/addressbook/");
       groupHelper = new GroupHelper(wd);
