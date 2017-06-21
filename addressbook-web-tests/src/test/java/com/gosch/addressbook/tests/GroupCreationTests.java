@@ -11,7 +11,7 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void testGroupCreation() {
-        app.goTo().groupPage();
+        app.goTo().groupPage(); // only one line of code for navigation
         List<GroupData> before = app.group().list();
         //GroupData group = new GroupData("test1", null, null);
         GroupData group = new GroupData().withName("test");
