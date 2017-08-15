@@ -11,13 +11,13 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
-    private final GroupData groupData1 = new GroupData().withName("test1");
+    private final String groupName = "test1";
 
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().groupPage();
-        if (!app.group().list().contains(groupData1)) {
-            app.group().create(new GroupData().withName(groupData1.getName()));
+        if (!app.group().list().stream().anyMatch(item -> groupName.equals(item.getName()))) {
+            app.group().create(new GroupData().withName(groupName));
         }
     }
 
@@ -32,7 +32,7 @@ public class ContactCreationTests extends TestBase {
                 .withLastName("Voronov")
                 .withMobile("53089127")
                 .withEmail("georgi.voronov@outlook.com")
-                .withGroup(groupData1.getName());
+                .withGroup(groupName);
         app.contact().create(contact, true);
 
         List<ContactData> after = app.contact().list();
