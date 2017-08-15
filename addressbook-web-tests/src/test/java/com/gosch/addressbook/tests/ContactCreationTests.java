@@ -1,7 +1,9 @@
 package com.gosch.addressbook.tests;
 
 import com.gosch.addressbook.models.ContactData;
+import com.gosch.addressbook.models.GroupData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -9,20 +11,30 @@ import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
+    private final String groupName = "test1";
+
+    @BeforeMethod
+    public void ensurePreconditions() {
+        app.goTo().groupPage();
+        if (!app.group().list().contains(groupName)) {
+            app.group().create(new GroupData().withName(groupName));
+        }
+    }
+
     @Test(enabled = true)
     public void ContactCreationTests() {
         app.goTo().homePage();
         List<ContactData> before = app.contact().list();
-        app.goTo().contactCreationPage();
-        // TODO: add method that checks whether there is a group for contact or not
 
+        app.goTo().contactCreationPage();
         ContactData contact = new ContactData()
                 .withFirstName("Georgi")
                 .withLastName("Voronov")
                 .withMobile("53089127")
                 .withEmail("georgi.voronov@outlook.com")
-                .withGroup("modified1");
+                .withGroup(groupName);
         app.contact().create(contact, true);
+
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
