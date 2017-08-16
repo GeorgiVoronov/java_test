@@ -16,7 +16,7 @@ public class ContactCreationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         app.goTo().groupPage();
-        if (!app.group().list().stream().anyMatch(item -> groupName.equals(item.getName()))) {
+        if (!app.group().all().stream().anyMatch(item -> groupName.equals(item.getName()))) {
             app.group().create(new GroupData().withName(groupName));
         }
     }
