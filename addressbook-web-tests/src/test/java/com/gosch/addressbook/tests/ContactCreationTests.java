@@ -6,8 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
@@ -24,7 +23,7 @@ public class ContactCreationTests extends TestBase {
     @Test(enabled = true)
     public void ContactCreationTests() {
         app.goTo().homePage();
-        List<ContactData> before = app.contact().list();
+        Set<ContactData> before = app.contact().all();
 
         app.goTo().contactCreationPage();
         ContactData contact = new ContactData()
@@ -35,14 +34,11 @@ public class ContactCreationTests extends TestBase {
                 .withGroup(groupName);
         app.contact().create(contact, true);
 
-        List<ContactData> after = app.contact().list();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         contact.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId());
         before.add(contact);
-        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byId);
-        after.sort(byId);
         Assert.assertEquals(before, after);
     }
 
