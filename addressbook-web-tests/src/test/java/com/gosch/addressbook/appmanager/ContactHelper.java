@@ -10,9 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class ContactHelper extends BaseHelper {
@@ -79,6 +77,7 @@ public class ContactHelper extends BaseHelper {
     public void create(ContactData contactData, boolean creation) {
         fillContactForm(contactData, creation);
         submitContactCreation();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -86,6 +85,7 @@ public class ContactHelper extends BaseHelper {
         initContactModification(contact.getId());
         fillContactForm(contact,false);
         submitContactModification();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -93,6 +93,7 @@ public class ContactHelper extends BaseHelper {
         selectContact(index);
         deleteSelectedContacts();
         submitContactsDeletion();
+        contactCache = null;
         wait.withTimeout(10, TimeUnit.SECONDS)
                 .withMessage("Error returning to Home Page")
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#search-az > form > input[type=\"text\"]")));
@@ -102,6 +103,7 @@ public class ContactHelper extends BaseHelper {
         selectContactById(contact.getId());
         deleteSelectedContacts();
         submitContactsDeletion();
+        contactCache = null;
         wait.withTimeout(10, TimeUnit.SECONDS)
                 .withMessage("Error returning to Home Page")
                 .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#search-az > form > input[type=\"text\"]")));
@@ -135,18 +137,23 @@ public class ContactHelper extends BaseHelper {
         return contacts;
     }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null) {
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             List<WebElement> list = element.findElements(By.tagName("td"));
             int id = Integer.parseInt(list.get(0).findElement(By.tagName("input")).getAttribute("id"));
-            contacts.add(new ContactData()
+            contactCache.add(new ContactData()
                     .withId(id)
                     .withFirstName(list.get(2).getText())
                     .withLastName(list.get(1).getText())
             );
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 }
