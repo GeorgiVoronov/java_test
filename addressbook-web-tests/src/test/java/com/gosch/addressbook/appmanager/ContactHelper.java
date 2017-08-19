@@ -1,6 +1,7 @@
 package com.gosch.addressbook.appmanager;
 
 import com.gosch.addressbook.models.ContactData;
+import com.gosch.addressbook.models.Contacts;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -134,8 +135,8 @@ public class ContactHelper extends BaseHelper {
         return contacts;
     }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             List<WebElement> list = element.findElements(By.tagName("td"));

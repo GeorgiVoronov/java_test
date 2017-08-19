@@ -23,6 +23,9 @@ public class Groups extends ForwardingSet<GroupData> {
     }
 
     public Groups withAdded(GroupData group) {
+        // Created copy of object so that old object will stay not changed
+        // The method will return new object with added group
+        // In this case we can work with both SETs (with added group and without)
         Groups groups = new Groups(this);
         groups.add(group);
         return groups;
