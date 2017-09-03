@@ -34,9 +34,9 @@ public class ContactCreationTests extends TestBase {
                 .withEmail("georgi.voronov@outlook.com")
                 .withGroup(groupName);
         app.contact().create(contact, true);
-
+        assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();
-        assertThat(after.size(), equalTo(before.size() + 1));
+
 
         assertThat(after, equalTo(before.withAdded(
                 contact.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId()))));
