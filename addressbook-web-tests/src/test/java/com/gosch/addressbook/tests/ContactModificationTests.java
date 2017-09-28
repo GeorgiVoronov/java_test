@@ -18,7 +18,7 @@ public class ContactModificationTests extends TestBase {
             app.contact().create(new ContactData()
                             .withFirstName("Georgi")
                             .withLastName("Voronov")
-                            .withMobile("53089127")
+                            .withMobilePhone("53089127")
                             .withEmail("georgi.voronov@outlook.com")
                             .withGroup("modified1"),
                         true);
@@ -35,7 +35,7 @@ public class ContactModificationTests extends TestBase {
                 .withFirstName("Miwa")
                 .withLastName("Alijev")
                 .withNickName("Rusty")
-                .withMobile("5556789")
+                .withMobilePhone("5556789")
                 .withEmail("miwa@gmail.com");
         app.contact().modify(contact);
         assertThat(app.contact().count(), equalTo(before.size()));

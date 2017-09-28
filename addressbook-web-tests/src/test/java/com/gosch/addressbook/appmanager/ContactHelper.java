@@ -23,7 +23,7 @@ public class ContactHelper extends BaseHelper {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
         type(By.name("nickname"), contactData.getNickName());
-        type(By.name("mobile"), contactData.getMobile());
+        type(By.name("mobile"), contactData.getMobilePhone());
         type(By.name("email"), contactData.getEmail());
 
         if (creation) {
@@ -42,8 +42,35 @@ public class ContactHelper extends BaseHelper {
         click(By.name("submit"));
     }
 
-    public void initContactModification(int id) {
-        click(By.xpath("//*[@id='maintable']/tbody/tr[.//input[@value='" + id + "']]/td[8]/a/img"));
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastname).withHomePhone(home)
+                .withMobilePhone(mobile).withWorkPhone(work);
+    }
+
+    public void initContactModificationById(int id) {
+        /*
+            Example #1: Метод последовательных приближений
+         */
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+        // Находим нужную строку
+        WebElement row = checkbox.findElement(By.xpath("./../..")); // два прыжка вверх по DOM [.. означают родительскую директорию]
+        List<WebElement> cells = row.findElements(By.tagName("td"));
+        cells.get(7).findElement(By.tagName("a")).click();
+
+        /*
+            Other Examples
+         */
+        //click(By.xpath("//*[@id='maintable']/tbody/tr[.//input[@value='" + id + "']]/td[8]/a/img"));
+        //wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
+        //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
+        //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
 
     public void submitContactModification() {
@@ -82,7 +109,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void modify(ContactData contact) {
-        initContactModification(contact.getId());
+        initContactModificationById(contact.getId());
         fillContactForm(contact,false);
         submitContactModification();
         contactCache = null;
