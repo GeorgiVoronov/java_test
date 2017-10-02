@@ -175,14 +175,12 @@ public class ContactHelper extends BaseHelper {
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
-            String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
             contactCache.add(new ContactData()
                     .withId(id)
                     .withLastName(cells.get(1).getText())
                     .withFirstName(cells.get(2).getText())
-                    .withHomePhone(phones[0])
-                    .withMobilePhone(phones[1])
-                    .withWorkPhone(phones[2])
+                    .withAllPhones(allPhones)
             );
         }
         return new Contacts(contactCache);
