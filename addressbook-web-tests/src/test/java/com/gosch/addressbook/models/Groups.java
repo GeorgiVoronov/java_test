@@ -5,10 +5,14 @@ import com.google.common.collect.ForwardingSet;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
+    Коллекция с расширенным набором методов
+ */
 public class Groups extends ForwardingSet<GroupData> {
 
     private Set<GroupData> delegate;
 
+    // The following constructor is made to create copy of SET
     public Groups(Groups groups) {
         this.delegate = new HashSet<>(groups.delegate);
     }
@@ -24,10 +28,10 @@ public class Groups extends ForwardingSet<GroupData> {
 
     public Groups withAdded(GroupData group) {
         // Created copy of object so that old object will stay not changed
-        // The method will return new object with added group
+        // The method will return new object with ADDED NEW GROUP
         // In this case we can work with both SETs (with added group and without)
         Groups groups = new Groups(this);
-        groups.add(group);
+        groups.add(group); // method took from class ForwardingSet
         return groups;
     }
 
