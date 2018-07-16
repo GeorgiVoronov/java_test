@@ -19,8 +19,7 @@ public class ContactModificationTests extends TestBase {
                             .withLastName("Voronov")
                             .withMobilePhone("53089127")
                             .withEmail("georgi.voronov@outlook.com")
-                            .withGroup("modified1"),
-                        true);
+                            .withGroup("modified1"));
         }
     }
 
