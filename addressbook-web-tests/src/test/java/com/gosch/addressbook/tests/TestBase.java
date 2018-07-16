@@ -5,12 +5,9 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-// Fixture class
 public class TestBase {
 
-    // Delegation -> Объекту вспомогательного класса делегируются некоторые действия
     // static - чтобы ссылка была общей для всех тестов
-    // Global Field
     protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     // BeforeMethod - запуск перед каждым тестовым методом

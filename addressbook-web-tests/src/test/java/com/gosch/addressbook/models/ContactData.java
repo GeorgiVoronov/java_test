@@ -1,6 +1,7 @@
 package com.gosch.addressbook.models;
 
 public class ContactData {
+
     private int id = Integer.MAX_VALUE;
     private String firstName;
     private String lastName;
@@ -11,28 +12,6 @@ public class ContactData {
     private String allPhones;
     private String email;
     private String group;
-
-    /*
-    public ContactData(int id, String firstName, String lastName, String nickName, String mobile, String email, String group) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nickName = nickName;
-        this.mobile = mobile;
-        this.email = email;
-        this.group = group;
-    }
-
-    public ContactData(String firstName, String lastName, String nickName, String mobile, String email, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nickName = nickName;
-        this.mobile = mobile;
-        this.email = email;
-        this.group = group;
-    }
-    */
 
     public ContactData withId(int id) {
         this.id = id;
@@ -141,13 +120,15 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         return result;
     }
 }

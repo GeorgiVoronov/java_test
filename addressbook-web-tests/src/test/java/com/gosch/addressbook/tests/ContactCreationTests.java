@@ -22,7 +22,7 @@ public class ContactCreationTests extends TestBase {
     }
 
     @Test(enabled = true)
-    public void ContactCreationTests() {
+    public void testContactCreation() {
         app.goTo().homePage();
         Contacts before = app.contact().all();
 
@@ -33,13 +33,28 @@ public class ContactCreationTests extends TestBase {
                 .withMobilePhone("53089127")
                 .withEmail("georgi.voronov@outlook.com")
                 .withGroup(groupName);
-        app.contact().create(contact, true);
+        app.contact().create(contact);
+
         assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();
-
-
         assertThat(after, equalTo(before.withAdded(
                 contact.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId()))));
+    }
+
+    @Test(enabled = true)
+    public void testBadContactCreation() {
+        app.goTo().homePage();
+        Contacts before = app.contact().all();
+        ContactData contact = new ContactData()
+                .withFirstName("Georgi'")
+                .withLastName("Voronov")
+                .withEmail("gv@test.com")
+                .withGroup("test1");
+        app.contact().create(contact);
+
+        assertThat(app.contact().count(), equalTo(before.size()));
+        Contacts after = app.contact().all();
+        assertThat(after, equalTo(before));
     }
 
 }

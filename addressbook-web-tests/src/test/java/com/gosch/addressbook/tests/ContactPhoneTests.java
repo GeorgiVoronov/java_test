@@ -11,8 +11,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactPhoneTests extends TestBase {
 
-    // TODO: create necessary contact if it does not exist
-
     @Test
     public void testContactPhone() {
         app.goTo().homePage();
@@ -23,6 +21,10 @@ public class ContactPhoneTests extends TestBase {
     }
 
     private String mergePhones(ContactData contact) {
+        // Метод Обратных Проверок
+        // Из известных кусочков склеить строку и сравнивать её
+        // 1. отбрасываем по фильтру пустые строки
+        // 2. склеиваем с помощью Collectors.joining()
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
                 .stream().filter((s) -> !s.equals(""))
                 .map(ContactPhoneTests::cleaned)
@@ -30,6 +32,8 @@ public class ContactPhoneTests extends TestBase {
     }
 
     public static String cleaned(String phone) {
+        // \s - табуляции, пробелы
+        // [-()] - перечисляется что заменить, - ( )
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 

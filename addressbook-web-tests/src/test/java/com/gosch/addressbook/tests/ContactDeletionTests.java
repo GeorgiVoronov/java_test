@@ -22,7 +22,6 @@ public class ContactDeletionTests extends TestBase {
                     .withEmail("georgi.voronov@outlook.com")
                     .withGroup("modified1"),
                     true);
-            app.goTo().homePage();
         }
     }
 
@@ -31,11 +30,11 @@ public class ContactDeletionTests extends TestBase {
         Contacts before = app.contact().all();
         ContactData contactToDelete = before.iterator().next();
         app.contact().delete(contactToDelete);
+        app.goTo().homePage();
+
         assertThat(app.contact().count(), equalTo(before.size() - 1));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(before.without(contactToDelete)));
     }
-
-
 
 }
